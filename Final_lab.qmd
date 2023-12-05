@@ -5,4 +5,36 @@ format: html
 editor: visual
 ---
 
+https://github.com/kennethsprak/Final-Lab-Hugo-Sparrman
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(vroom)
+library(here)
+i_am("Final_lab.qmd")
+```
+
+
+```{r, message=FALSE}
+stars <- vroom("Data/bt-data-systems.csv",delim = ":")
+
+if (nrow(stars) == 1052 & ncol(stars)==8) {
+  print("The file loading was sucessful")
+  } else {
+    print("The file loading was unsucessful")
+}
+
+  
+```
+```{r}
+test1<-stars|>
+  summarise("Number of observations" = nrow(stars),
+            "Number of variables" = ncol(stars),
+            "Missing values" = across(everything(), ~sum(is.na(.))))
+
+```
+
+
 
