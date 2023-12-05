@@ -16,7 +16,7 @@ library(here)
 i_am("Final_lab.qmd")
 ```
 
-
+### Question 3
 ```{r, message=FALSE}
 stars <- vroom("Data/bt-data-systems.csv",delim = ":",locale = locale(decimal_mark = ","))
 
@@ -29,7 +29,7 @@ if (nrow(stars) == 1052 & ncol(stars)==8) {
   
 ```
 
-
+### Question 4
 ```{r}
 test1<-stars|>
   summarise("Number of observations" = nrow(stars),
@@ -51,6 +51,18 @@ stars|>
 ### Question 6 
 
 ```{r}
+sum_stats<-stars|>
+  summarise("Size of biggest star" = max(`star mass`, na.rm = T),
+            "Size of smallest star" = min(`star mass`, na.rm = T),
+            "max_radius" = max(`Star Radius`, na.rm = T),
+            "min radius" =  min(`Star Radius`, na.rm = T),
+            "Hottest star" = max(`Equivalent Temperature`,na.rm = T),
+            "Coldest star" = min(`Equivalent Temperature`,na.rm = T),
+            "Brightest star" = max(`STAR LUMINOSITY`, na.rm = T),
+            "Coldest star" = min(`Equivalent Temperature`,na.rm = T))
+
+knitr::kable(sum_stats)
+
 
 ```
 
