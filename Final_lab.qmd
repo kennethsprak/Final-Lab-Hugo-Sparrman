@@ -18,7 +18,7 @@ i_am("Final_lab.qmd")
 
 
 ```{r, message=FALSE}
-stars <- vroom("Data/bt-data-systems.csv",delim = ":")
+stars <- vroom("Data/bt-data-systems.csv",delim = ":",locale = locale(decimal_mark = ","))
 
 if (nrow(stars) == 1052 & ncol(stars)==8) {
   print("The file loading was sucessful")
@@ -28,6 +28,8 @@ if (nrow(stars) == 1052 & ncol(stars)==8) {
 
   
 ```
+
+
 ```{r}
 test1<-stars|>
   summarise("Number of observations" = nrow(stars),
@@ -36,5 +38,20 @@ test1<-stars|>
 
 ```
 
+### Question 5
+
+```{r}
+stars|>
+  drop_na()|>
+  ggplot(aes(x = `Equivalent Temperature`,y =`Star Radius`)) +
+  geom_point()+
+  labs(x = "Temperature", y = "Radius")
+```
+
+### Question 6 
+
+```{r}
+
+```
 
 
